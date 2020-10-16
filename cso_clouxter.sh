@@ -14,7 +14,7 @@ cwagent_deb-ubu () {
     }	
 #Funcion para mirar procesos actuales
 consumo_recursos () {
-     top
+    htop
     }
 
 #Funcion para mirar procesos actuales
