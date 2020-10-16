@@ -5,7 +5,13 @@
 option=""
 
 #Funcion para instalar cw agent en distribuciones debian
-
+cwagent_deb-ubu () {
+    wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+    sudo dpkg -i -E ./amazon-cloudwatch-agent.deb
+    amazon-cloudwatch-agent-ctl -a start
+    amazon-cloudwatch-agent-ctl -a status
+    echo -e "Agente de CloudWatch ha sido instalado con exito"
+    }	
 #Funcion para mirar procesos actuales
 consumo_recursos () {
      top
@@ -72,7 +78,7 @@ do
    echo "5. Espacio en Disco"
    echo "6. Proceso de red "
    echo "7. Empaquetar y comprimir archivos o carpetas"
-
+   echo "8. Instalar agente CW en dist. debian/ubuntu"
    echo "0. Salir"
 
    # leer los datos del usuario
@@ -116,6 +122,11 @@ do
      empaquetar_salvar
      sleep 5
      ;;
+   8)
+      echo -e  "\n Instalar agente CW en dist. debian/ubuntu"
+      cwagent_deb-ubu
+      sleep 5
+      ;;
   0)
     echo -e "\n Saliendo Muchas Gracias "
     exit 0
